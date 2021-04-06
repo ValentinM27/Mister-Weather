@@ -52,14 +52,14 @@ client.on("message", message => {
         var city = args[1];
         message.delete();
         axios
-            .get(`http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${tokenapi}`)
+            .get(`http://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${tokenapi}&lang=fr`)
             .then(response => {
                 let apiData = response;
-                var tempKel = Math.ceil(apiData.data.main.temp)
-                var currentTemp = Math.round((tempKel-273.15))
+                var condition1 = apiData.data.weather[0].description
+                var currentTemp = Math.ceil(apiData.data.main.temp)
                 var cityName = city.toUpperCase();
                 var country = apiData.data.sys.country
-
+                
                 message.reply({embed: {
                     color: 3447003,
                     author: {
@@ -70,7 +70,7 @@ client.on("message", message => {
                     description: "Voici votre bulletin météo",
                     fields: [{
                         name: cityName+", "+country,
-                        value: "Il fait "+currentTemp+" °C"
+                        value: condition1+", il fait "+currentTemp+" °C"
                     }],
                     timestamp: dateNow,
                     footer: {
