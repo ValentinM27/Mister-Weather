@@ -60,17 +60,17 @@ client.on("message", message => {
                 var cityName = city.toUpperCase();
                 var country = apiData.data.sys.country
                 
-                message.reply({embed: {
+                message.channel.send({embed: {
                     color: 3447003,
                     author: {
-                        name: client.user.username,
-                        icon_url: client.user.avatarURL
+                        name: message.author.username,
+                        icon_url: message.author.avatarURL()
                     },
                     title: "MisterWeather",
                     description: "Voici votre bulletin météo",
                     fields: [{
                         name: cityName+", "+country,
-                        value: condition1+", il fait "+currentTemp+" °C"
+                        value: condition1+", il fait "+currentTemp+" °C" 
                     }],
                     timestamp: dateNow,
                     footer: {
