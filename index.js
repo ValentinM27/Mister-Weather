@@ -41,6 +41,7 @@ client.on("message", message => {
                 text: "© Valentin MARGUERIE"
             }
         }})
+        console.log("Time: "+dateNow+" User: "+message.author.username+" Demande commande d'aide");
     }
 })
 
@@ -78,9 +79,11 @@ client.on("message", message => {
                         text: "© Valentin MARGUERIE"
                     }
                 }});
+                console.log("Time: "+dateNow+" User: "+message.author.username+" Demande Météo Réussie")
             })
             .catch(err => {
                 message.reply("Entrez un ville valide")
+                console.log("Time: "+dateNow+" User: "+message.author.username+" Demande Météo Echec")
             })
     }
 })
